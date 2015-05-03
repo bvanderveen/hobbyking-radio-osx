@@ -1,0 +1,26 @@
+OS X:
+
+- Disable the Apple FTDI driver:
+
+    cd /System/Library/Extensions/IOUSBFamily.kext/Contents/PlugIns
+    sudo mv AppleUSBFTDI.kext AppleUSBFTDI.disabled
+
+- Install the FTDI VCP drivers from http://www.ftdichip.com/Drivers/VCP.htm. It will place the driver into /Library/Extensions/FTDIUSBSerialDriver.kext. 
+- Replace /Library/Extensions/FTDIUSBSerialDriver.kext/Contents/Info.plist with the Info.plist in this repository.
+- We edited the KEXT so its signature wont match its contents and Mach won't load it. Disable sig checking in Mach:
+    
+    sudo nvram boot-args=”kext-dev-mode=1
+
+- Reboot. Plug in your radios. 
+- Run:
+
+    ls /dev | grep usbserial
+
+- You should see something like:
+
+    cu.usbserial-AH030O8E
+    cu.usbserial-AH030OZN
+    tty.usbserial-AH030O8E
+    tty.usbserial-AH030OZN
+
+- Test with {read, write}.sh
