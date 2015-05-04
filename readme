@@ -1,3 +1,9 @@
+These are my notes on what I did to my Hobby King Transceiver Telemetry Radio Set V2.
+
+Product page:
+
+http://www.hobbyking.com/hobbyking/store/__55560__HKPilot_Transceiver_Telemetry_Radio_Set_V2_915Mhz_.html
+
 OS X:
 
 - Disable the Apple FTDI driver:
@@ -7,7 +13,7 @@ OS X:
 
 - Install the FTDI VCP drivers from http://www.ftdichip.com/Drivers/VCP.htm. It will place the driver into /Library/Extensions/FTDIUSBSerialDriver.kext. 
 - Replace /Library/Extensions/FTDIUSBSerialDriver.kext/Contents/Info.plist with the Info.plist in this repository.
-- We edited the KEXT so its signature wont match its contents and Mach won't load it. Disable sig checking in Mach:
+- We edited the KEXT so its signature won't match its contents, so Mach won't load it. Disable sig checking in Mach:
     
     sudo nvram boot-args=”kext-dev-mode=1
 
